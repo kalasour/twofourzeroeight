@@ -35,6 +35,17 @@ namespace twozerofoureight
             if (i != 0)
             {
                 l.Text = Convert.ToString(i);
+                if (i.ToString().Length > 3)
+                {
+                    l.Font = new Font("Microsoft Sans Serif", 12);
+                }
+                else if (i.ToString().Length>2)
+                {
+                    l.Font = new Font("Microsoft Sans Serif", 15);
+                }else
+                {
+                    l.Font = new Font("Microsoft Sans Serif", 20);
+                }
             } else {
                 l.Text = "";
             }
@@ -75,6 +86,15 @@ namespace twozerofoureight
             UpdateTile(lbl31,board[3, 1]);
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
+            int sum = 0;
+            for(int i=0;i<4;i++)
+            {
+                for(int j=0;j<4;j++)
+                {
+                    sum += board[i,j];
+                }
+            }
+            lblScore.Text = sum.ToString();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -95,6 +115,41 @@ namespace twozerofoureight
         private void btnDown_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+        }
+
+
+        private void TwoZeroFourEightView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl33_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl03_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Down:
+                    controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+                    break;
+                case Keys.Right:
+                    controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+                    break;
+                case Keys.Up:
+                    controller.ActionPerformed(TwoZeroFourEightController.UP);
+                    break;
+                case Keys.Left:
+                    controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
     }

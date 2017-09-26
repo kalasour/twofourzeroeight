@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace twozerofoureight
 {
@@ -11,7 +12,7 @@ namespace twozerofoureight
         protected int boardSize; // default is 4
         protected int[,] board;
         protected Random rand;
-
+        private int[] check=new int[4];
         public TwoZeroFourEightModel() : this(4)
         {
             // default board size is 4 
@@ -39,21 +40,47 @@ namespace twozerofoureight
 
         private int[,] Random(int[,] input)
         {
+            if(check[0] == 1&& check[1] == 1&& check[2] == 1&& check[3] == 1)
+            {
+                MessageBox.Show("Game Over!!!");
+                return input;
+            }
+            int count = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (board[i, j] == 0)
+                    {
+                        count++;
+                    }
+                }
+            }
+            if (count == 0)
+            {
+                return input;
+            }
             while (true)
             {
                 int x = rand.Next(boardSize);
                 int y = rand.Next(boardSize);
+                
                 if (board[x, y] == 0)
                 {
                     board[x, y] = 2;
                     break;
                 }
             }
+            for(int x=0;x<3;x++)
+            {
+                check[x] = 0;
+            }
             return input;
         }
 
         public void PerformDown()
         {
+            check[0] = 1;
             int[] buffer;
             int pos;
             int[] rangeX = Enumerable.Range(0, boardSize).ToArray();
@@ -107,6 +134,7 @@ namespace twozerofoureight
 
         public void PerformUp()
         {
+            check[1] = 1;
             int[] buffer;
             int pos;
 
@@ -159,6 +187,7 @@ namespace twozerofoureight
 
         public void PerformRight()
         {
+            check[2] = 1;
             int[] buffer;
             int pos;
 
@@ -213,6 +242,7 @@ namespace twozerofoureight
 
         public void PerformLeft()
         {
+            check[3] = 1;
             int[] buffer;
             int pos;
             int[] range = Enumerable.Range(0, boardSize).ToArray();
