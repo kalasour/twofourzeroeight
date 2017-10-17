@@ -72,6 +72,7 @@
             this.lbl01.Size = new System.Drawing.Size(51, 51);
             this.lbl01.TabIndex = 1;
             this.lbl01.Text = "0";
+            this.lbl01.Click += new System.EventHandler(this.lbl01_Click);
             // 
             // lbl02
             // 

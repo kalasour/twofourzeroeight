@@ -152,5 +152,9 @@ namespace twozerofoureight
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private void lbl01_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
