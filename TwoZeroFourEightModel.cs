@@ -42,7 +42,7 @@ namespace twozerofoureight
         {
             if(check[0] == 1&& check[1] == 1&& check[2] == 1&& check[3] == 1)
             {
-                MessageBox.Show("Game Over!!!");
+                MessageBox.Show("Game Over!!!!!!!");
                 return input;
             }
             int count = 0;
